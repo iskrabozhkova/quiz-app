@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './Question.css'; // Import the CSS file
+import './Question.css';
 
 const Question = ({ question, onAnswerSelection, selectedAnswer, isSubmitted, correctAnswer }) => {
   const options = [...question.incorrect_answers, question.correct_answer];
@@ -39,7 +39,7 @@ const Question = ({ question, onAnswerSelection, selectedAnswer, isSubmitted, co
           onClick={() => onAnswerSelection(option)} 
           onMouseEnter={() => setHoveredOption(option)} 
           onMouseLeave={() => setHoveredOption(null)} 
-          className={`button ${getButtonClass(option)}`} // Apply the dynamic class
+          className={`button ${getButtonClass(option)}`}
           disabled={isSubmitted} 
         >
           {option}

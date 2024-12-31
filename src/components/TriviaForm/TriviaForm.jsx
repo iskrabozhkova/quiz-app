@@ -23,7 +23,7 @@ const TriviaForm = ({ onFormSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="form-group"> {/* Flex container for category, difficulty, and button */}
+      <div className="form-group"> 
         <div>
           <select
             id="categorySelect"
