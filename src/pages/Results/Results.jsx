@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Question from '../components/Question/Question';
+import Question from '../../components/Question/Question';
+import './Results.css';
 
 const Results = () => {
   const { state } = useLocation();
@@ -33,7 +34,6 @@ const Results = () => {
               isSubmitted={true} 
               correctAnswer={question.correct_answer} 
             />
-            
           </div>
         );
       })}
@@ -42,7 +42,11 @@ const Results = () => {
           You got {correctAnswers} out of {questions.length} correct
         </h3>
       </div>
-      <button onClick={handleNewQuizClick}>Create New Quiz</button>
+      <div className="button-container">
+        <button className="new-quiz-button" onClick={handleNewQuizClick}>
+          Create New Quiz
+        </button>
+      </div>
     </div>
   );
 };
