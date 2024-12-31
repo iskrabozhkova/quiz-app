@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const TriviaForm = ({ onFormSubmit }) => {
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState('');
   const [difficulty, setDifficulty] = useState('');
 
-  // Fetch categories from API
   useEffect(() => {
     const fetchCategories = async () => {
       const response = await fetch('https://opentdb.com/api_category.php');
@@ -46,5 +46,9 @@ const TriviaForm = ({ onFormSubmit }) => {
     </form>
   );
 };
+
+TriviaForm.propTypes = {
+    onFormSubmit: PropTypes.func.isRequired,
+  };
 
 export default TriviaForm;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Question from '../components/Question';
+import PropTypes from 'prop-types';
 
 const Quiz = () => {
   const { category, difficulty } = useParams();
@@ -115,5 +116,10 @@ const Quiz = () => {
     </div>
   );
 };
+
+Quiz.propTypes = {
+    category: PropTypes.string.isRequired,
+    difficulty: PropTypes.string.isRequired,
+  };
 
 export default Quiz;

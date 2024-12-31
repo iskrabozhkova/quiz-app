@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const Question = ({ question, onAnswerSelection, selectedAnswer, isSubmitted, correctAnswer }) => {
   const options = [...question.incorrect_answers, question.correct_answer];
@@ -53,5 +54,17 @@ const Question = ({ question, onAnswerSelection, selectedAnswer, isSubmitted, co
     </div>
   );
 };
+
+Question.propTypes = {
+    question: PropTypes.shape({
+      question: PropTypes.string.isRequired,
+      incorrect_answers: PropTypes.arrayOf(PropTypes.string).isRequired,
+      correct_answer: PropTypes.string.isRequired,
+    }).isRequired,
+    onAnswerSelection: PropTypes.func.isRequired,
+    selectedAnswer: PropTypes.string,
+    isSubmitted: PropTypes.bool.isRequired,
+    correctAnswer: PropTypes.string.isRequired,
+  };
 
 export default Question;
