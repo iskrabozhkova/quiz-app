@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import './Question.css'; // Import the CSS file
 
 const Question = ({ question, onAnswerSelection, selectedAnswer, isSubmitted, correctAnswer }) => {
   const options = [...question.incorrect_answers, question.correct_answer];
@@ -7,26 +8,26 @@ const Question = ({ question, onAnswerSelection, selectedAnswer, isSubmitted, co
 
   useEffect(() => {
     if (isSubmitted) {
-      setHoveredOption(null); 
+      setHoveredOption(null);
     }
   }, [isSubmitted]);
 
-  const getButtonStyle = (option) => {
+  const getButtonClass = (option) => {
     if (isSubmitted) {
       if (option === correctAnswer) {
-        return 'green'; 
+        return 'green';
       }
       if (option === selectedAnswer && option !== correctAnswer) {
         return 'red';
       }
-      return 'transparent'; 
+      return 'transparent';
     }
 
     if (hoveredOption === option || option === selectedAnswer) {
-      return 'green'; 
+      return 'green';
     }
 
-    return 'transparent'; 
+    return 'transparent';
   };
 
   return (
@@ -38,14 +39,7 @@ const Question = ({ question, onAnswerSelection, selectedAnswer, isSubmitted, co
           onClick={() => onAnswerSelection(option)} 
           onMouseEnter={() => setHoveredOption(option)} 
           onMouseLeave={() => setHoveredOption(null)} 
-          style={{
-            backgroundColor: getButtonStyle(option),
-            border: '1px solid #ccc',
-            padding: '10px 20px',
-            cursor: 'pointer', 
-            color: 'black',
-            fontWeight: 'bold',
-          }}
+          className={`button ${getButtonClass(option)}`} // Apply the dynamic class
           disabled={isSubmitted} 
         >
           {option}
@@ -56,15 +50,15 @@ const Question = ({ question, onAnswerSelection, selectedAnswer, isSubmitted, co
 };
 
 Question.propTypes = {
-    question: PropTypes.shape({
-      question: PropTypes.string.isRequired,
-      incorrect_answers: PropTypes.arrayOf(PropTypes.string).isRequired,
-      correct_answer: PropTypes.string.isRequired,
-    }).isRequired,
-    onAnswerSelection: PropTypes.func.isRequired,
-    selectedAnswer: PropTypes.string,
-    isSubmitted: PropTypes.bool.isRequired,
-    correctAnswer: PropTypes.string.isRequired,
-  };
+  question: PropTypes.shape({
+    question: PropTypes.string.isRequired,
+    incorrect_answers: PropTypes.arrayOf(PropTypes.string).isRequired,
+    correct_answer: PropTypes.string.isRequired,
+  }).isRequired,
+  onAnswerSelection: PropTypes.func.isRequired,
+  selectedAnswer: PropTypes.string,
+  isSubmitted: PropTypes.bool.isRequired,
+  correctAnswer: PropTypes.string.isRequired,
+};
 
 export default Question;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TriviaForm from '../components/TriviaForm';
+import TriviaForm from '../components/TriviaForm/TriviaForm';
 import { useNavigate } from 'react-router-dom'; 
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Welcome to Trivia Quiz</h1>
+      <h1>Quiz Maker</h1>
       <TriviaForm onFormSubmit={handleFormSubmit} />
     </div>
   );

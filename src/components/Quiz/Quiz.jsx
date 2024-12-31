@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Question from '../components/Question';
+import Question from '../Question/Question';
 import PropTypes from 'prop-types';
+import './Quiz.css';
 
 const Quiz = () => {
   const { category, difficulty } = useParams();
@@ -23,7 +24,6 @@ const Quiz = () => {
         
         if (!response.ok) {
           if (response.status === 429) {
-      
             const retryAfter = response.headers.get('Retry-After');
             const delayTime = retryAfter ? parseInt(retryAfter) * 1000 : delay * (attempt + 1);
             console.log(`Rate limit reached, retrying in ${delayTime / 1000} seconds...`);
@@ -61,7 +61,6 @@ const Quiz = () => {
         setAnswers(new Array(questionsData.length).fill(null));
       } catch (error) {
         setError('Error fetching quiz data: ' + error.message);
-        console.error('Error fetching quiz data:', error);
       } finally {
         setLoading(false);
       }
@@ -84,21 +83,20 @@ const Quiz = () => {
   const allAnswered = answers.every(answer => answer !== null);
 
   if (loading) {
-    return <p>Loading questions...</p>;
+    return <p className="loading">Loading questions...</p>;
   }
 
   if (error) {
     return (
-      <div>
+      <div className="error-message">
         <p>{error}</p>
-        <button onClick={() => window.location.reload()}>Retry</button>
+        <button className="retry-button" onClick={() => window.location.reload()}>Retry</button>
       </div>
     );
   }
 
   return (
-    <div>
-      <h2>Quiz</h2>
+    <div className="quiz-container">
       {questions.map((question, index) => (
         <Question
           key={index}
@@ -109,7 +107,7 @@ const Quiz = () => {
         />
       ))}
       {!quizCompleted && (
-        <button onClick={handleSubmit} disabled={!allAnswered}>
+        <button className="submit-button" onClick={handleSubmit} disabled={!allAnswered}>
           Submit
         </button>
       )}
@@ -120,6 +118,6 @@ const Quiz = () => {
 Quiz.propTypes = {
     category: PropTypes.string.isRequired,
     difficulty: PropTypes.string.isRequired,
-  };
+};
 
 export default Quiz;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Question from '../components/Question';
+import Question from '../components/Question/Question';
 
 const Results = () => {
   const { state } = useLocation();
@@ -14,7 +14,7 @@ const Results = () => {
     return acc;
   }, 0);
 
-  const scoreColor = correctAnswers <= 1 ? 'red' : correctAnswers <= 3 ? 'yellow' : 'green';
+  const scoreColor = correctAnswers <= 1 ? 'red' : correctAnswers <= 3 ? 'orange' : 'green';
 
   const handleNewQuizClick = () => {
     navigate('/');
@@ -22,7 +22,6 @@ const Results = () => {
 
   return (
     <div>
-      <h2>Quiz Results</h2>
       {questions.map((question, index) => {
         const isCorrect = answers[index] === question.correct_answer;
         return (

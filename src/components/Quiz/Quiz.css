@@ -1,0 +1,90 @@
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .loading {
+    font-size: 1.5em;
+    color: #4CAF50;
+    text-align: center;
+  }
+
+  .error-message {
+    font-size: 1.2em;
+    color: #e74c3c;
+    text-align: center;
+  }
+  
+  .retry-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .retry-button:hover {
+    background-color: #c0392b;
+  }
+  
+  .question {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .answer-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .submit-button:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+  }
+  
+  /* Submit button styling */
+  .submit-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #2ecc71;
+  }
+  
+  .submit-button {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 15px;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .quiz-container {
+      padding: 15px;
+    }
+
+    .submit-button {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+  
